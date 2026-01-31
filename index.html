@@ -51,20 +51,22 @@
   <p>Your words matter. Share your feelings.</p>
 
   <form
-    id="reviewForm"
-    action="https://formspree.io/f/xaqjzgel"
-    method="POST"
-  >
-    <input type="hidden" name="_subject" value="New Book Review">
+  id="reviewForm"
+  action="https://formspree.io/f/xaqjzgel"
+  method="POST"
+>
+  <input type="hidden" name="_subject" value="New Book Review">
+  <input type="hidden" name="_redirect" value="thankyou.html">
 
-    <label>Your Email</label>
-    <input type="email" name="email" required>
+  <label>Your Email</label>
+  <input type="email" name="email" required>
 
-    <label>Your Review</label>
-    <textarea name="message" rows="5" required></textarea>
+  <label>Your Review</label>
+  <textarea name="message" rows="5" required></textarea>
 
-    <button type="submit">Send Review 🚀</button>
-  </form>
+  <button type="submit">Send Review 🚀</button>
+</form>
+
 </section>
 
 <!-- PDF MODAL -->
