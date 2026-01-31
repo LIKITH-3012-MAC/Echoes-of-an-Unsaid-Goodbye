@@ -1,6 +1,5 @@
 // Full PDF URL
-const pdfFile = 'Echoes-of-an-Unsaid-Goodbye-.pdf';
-
+const pdfFile = 'https://likith-3012-mac.github.io/Echoes-of-an-Unsaid-Goodbye-.pdf/Echoes-of-an-Unsaid-Goodbye.pdf';
 
 // Buttons
 const readBtn = document.getElementById('readBook');
