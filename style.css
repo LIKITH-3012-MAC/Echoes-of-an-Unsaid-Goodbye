@@ -1,4 +1,4 @@
-\/* Global */
+/* Global */
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +11,7 @@ body {
   color: #333;
 }
 
+/* Feedback Animation */
 .feedback-text {
   font-size: 1.2rem;
   font-weight: 600;
@@ -26,7 +27,7 @@ body {
   to { transform: scale(1.05); }
 }
 
-/* Hero */
+/* Hero Section */
 .hero {
   height: 100vh;
   background: linear-gradient(135deg, #8a2be2, #f5e1da);
@@ -101,7 +102,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Review */
+/* Review Section */
 .review-section {
   padding: 70px 20px;
   background: linear-gradient(135deg, #fff, #f5e1da);
@@ -165,7 +166,6 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 999;
 }
 
 .modal iframe {
@@ -184,7 +184,7 @@ body {
   cursor: pointer;
 }
 
-/* Canvas */
+/* Canvas Particles */
 #particles {
   position: absolute;
   width: 100%;
