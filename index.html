@@ -52,24 +52,24 @@
   <h2>Leave a Review</h2>
   <p class="review-subtitle">Your words mean everything 💭</p>
 
-  <form
-    action="https://formspree.io/f/xaqjzgel"
-    method="POST"
-  >
-    <input type="hidden" name="_next" value="thankyou.html">
+  <form action="https://formspree.io/f/xaqjzgel" method="POST">
+  <!-- Redirect after submission -->
+  <input type="hidden" name="_next" value="thankyou.html">
 
-    <label>
-      Your Email
-      <input type="email" name="email" required placeholder="you@example.com">
-    </label>
+  <label>
+    Your Email
+    <input type="email" name="email" required placeholder="you@example.com">
+  </label>
 
-    <label>
-      Your Review
-      <textarea name="message" required placeholder="Write what you felt..."></textarea>
-    </label>
+  <label>
+    Your Review
+    <textarea name="message" required placeholder="Write what you felt..."></textarea>
+  </label>
 
-    <button type="submit">Send Review</button>
-  </form>
+  <!-- Submit button -->
+  <button type="submit">Send Review</button>
+</form>
+
 </section>
 
 <!-- PDF Modal -->
