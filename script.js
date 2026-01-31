@@ -1,4 +1,5 @@
-\const pdfFile = 'https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye.pdf';
+// PDF Handling
+const pdfFile = 'https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye';
 
 const readBtn = document.getElementById('readBook');
 const downloadBtn = document.getElementById('downloadBook');
@@ -6,7 +7,7 @@ const modal = document.getElementById('pdfModal');
 const pdfFrame = document.getElementById('pdfFrame');
 const closeModal = document.querySelector('.close');
 
-// Read PDF in modal
+// Open PDF in modal
 readBtn.onclick = () => {
   pdfFrame.src = pdfFile;
   modal.style.display = 'block';
@@ -16,7 +17,8 @@ readBtn.onclick = () => {
 downloadBtn.onclick = () => {
   const link = document.createElement('a');
   link.href = pdfFile;
-  link.setAttribute('download', 'Echoes_of_an_Unsaid_Goodbye.pdf');
+  link.target = '_blank'; // Ensures download works cross-browser
+  link.download = 'Echoes_of_an_Unsaid_Goodbye.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -36,7 +38,7 @@ window.onclick = e => {
   }
 };
 
-/* Particles */
+// Particles Background
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 
@@ -67,26 +69,23 @@ class Particle {
   }
 }
 
-function init() {
+function initParticles() {
   particles = [];
   for (let i = 0; i < 100; i++) particles.push(new Particle());
 }
 
-function animate() {
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
-    p.update();
-    p.draw();
-  });
-  requestAnimationFrame(animate);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animateParticles);
 }
 
-init();
-animate();
+initParticles();
+animateParticles();
 
 // Handle resize
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  init();
+  initParticles();
 });
