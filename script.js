@@ -1,38 +1,34 @@
-// PDF URL
+/* ================= PDF HANDLING ================= */
+
 const pdfFile = "https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye";
 
-// Buttons
 const readBtn = document.getElementById("readBook");
 const downloadBtn = document.getElementById("downloadBook");
-
-// Modal
 const modal = document.getElementById("pdfModal");
 const pdfFrame = document.getElementById("pdfFrame");
 const closeBtn = document.querySelector(".close");
 
-// Open PDF
-readBtn.onclick = () => {
+readBtn.addEventListener("click", () => {
   pdfFrame.src = pdfFile;
   modal.style.display = "block";
-};
+});
 
-// Download PDF
-downloadBtn.onclick = () => {
+downloadBtn.addEventListener("click", () => {
   window.open(pdfFile, "_blank");
-};
+});
 
-// Close modal
-closeBtn.onclick = () => {
+closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
   pdfFrame.src = "";
-};
+});
 
-// PARTICLES
+/* ================= PARTICLES ================= */
+
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 let particles = [];
 
@@ -51,7 +47,7 @@ class Particle {
     if (this.y < 0 || this.y > canvas.height) this.dy *= -1;
   }
   draw() {
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
@@ -60,40 +56,53 @@ class Particle {
 
 function initParticles() {
   particles = [];
-  for (let i = 0; i < 100; i++) particles.push(new Particle());
+  for (let i = 0; i < 100; i++) {
+    particles.push(new Particle());
+  }
 }
 
-function animate() {
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   particles.forEach(p => {
     p.update();
     p.draw();
   });
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateParticles);
 }
 
 initParticles();
-animate();
+animateParticles();
 
-// REVIEW FORM + ROCKET
+/* ================= REVIEW FORM (FIXED) ================= */
+
 const reviewForm = document.getElementById("reviewForm");
 const successModal = document.getElementById("rocket-success-modal");
 
 reviewForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const data = new FormData(reviewForm);
+  const formData = new FormData(reviewForm);
 
-  await fetch(reviewForm.action, {
-    method: "POST",
-    body: data,
-    headers: { Accept: "application/json" }
-  });
+  try {
+    const response = await fetch(reviewForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Accept": "application/json"
+      }
+    });
 
-  successModal.style.display = "flex";
-  reviewForm.reset();
+    if (response.ok) {
+      successModal.style.display = "flex";
+      reviewForm.reset();
 
-  setTimeout(() => {
-    successModal.style.display = "none";
-  }, 3000);
+      setTimeout(() => {
+        successModal.style.display = "none";
+      }, 3000);
+    } else {
+      alert("❌ Review not sent. Try again.");
+    }
+  } catch (err) {
+    alert("⚠️ Network error. Please check your internet.");
+  }
 });
