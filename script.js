@@ -1,5 +1,5 @@
 // Full PDF URL (relative path is best)
-const pdfFile = 'Echoes-of-an-Unsaid-Goodbyes.pdf';
+const pdfFile = 'https://github.com/LIKITH-3012-MAC/Echoes-of-an-Unsaid-Goodbye/blob/main/Echoes%20of%20an%20Unsaid%20Goodbyes.pdf';
 
 // Buttons
 const readBtn = document.getElementById('readBook');
