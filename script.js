@@ -1,5 +1,5 @@
 // Full PDF URL (relative path is best)
-const pdfFile = 'https://github.com/LIKITH-3012-MAC/Echoes-of-an-Unsaid-Goodbye/blob/main/Echoes%20of%20an%20Unsaid%20Goodbyes.pdf';
+const pdfFile = 'https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye';
 
 // Buttons
 const readBtn = document.getElementById('readBook');
@@ -20,7 +20,7 @@ readBtn.addEventListener('click', () => {
 downloadBtn.addEventListener('click', () => {
   const link = document.createElement('a');
   link.href = pdfFile;
-  link.download = 'https://github.com/LIKITH-3012-MAC/Echoes-of-an-Unsaid-Goodbye/blob/main/Echoes%20of%20an%20Unsaid%20Goodbyes.pdf';
+  link.download = 'https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
