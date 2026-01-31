@@ -1,5 +1,5 @@
-// Full PDF URL
-const pdfFile = 'https://likith-3012-mac.github.io/Echoes-of-an-Unsaid-Goodbye/Echoes-of-an-Unsaid-Goodbyes.pdf';
+// Full PDF URL (relative path is best)
+const pdfFile = 'Echoes-of-an-Unsaid-Goodbyes.pdf';
 
 // Buttons
 const readBtn = document.getElementById('readBook');
@@ -40,7 +40,7 @@ window.onclick = function(event) {
   }
 }
 
-// Optional: Simple particle effect for hero
+// Particle effect
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -78,6 +78,7 @@ function initParticles(){
     particlesArray.push(new Particle());
   }
 }
+
 function animateParticles(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   particlesArray.forEach(p => {
