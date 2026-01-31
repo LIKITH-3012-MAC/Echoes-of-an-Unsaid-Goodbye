@@ -9,6 +9,20 @@ body {
   background: #f5f0e1;
   color: #333;
 }
+.feedback-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffdd59;
+  text-shadow: 0 0 5px #ffdd59, 0 0 10px #ff6a00;
+  animation: pulse 2s infinite alternate;
+  text-align: center;
+  margin: 20px 0;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
 
 /* Hero */
 .hero {
