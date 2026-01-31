@@ -1,4 +1,4 @@
-const pdfFile = 'https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye';
+\const pdfFile = 'https://pdfhost.io/v/bxCpZ8TVVm_Echoes_of_an_Unsaid_Goodbye.pdf';
 
 const readBtn = document.getElementById('readBook');
 const downloadBtn = document.getElementById('downloadBook');
@@ -6,23 +6,29 @@ const modal = document.getElementById('pdfModal');
 const pdfFrame = document.getElementById('pdfFrame');
 const closeModal = document.querySelector('.close');
 
+// Read PDF in modal
 readBtn.onclick = () => {
   pdfFrame.src = pdfFile;
   modal.style.display = 'block';
 };
 
+// Download PDF
 downloadBtn.onclick = () => {
   const link = document.createElement('a');
   link.href = pdfFile;
-  link.download = 'Echoes_of_an_Unsaid_Goodbye.pdf';
+  link.setAttribute('download', 'Echoes_of_an_Unsaid_Goodbye.pdf');
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
 };
 
+// Close modal
 closeModal.onclick = () => {
   modal.style.display = 'none';
   pdfFrame.src = '';
 };
 
+// Close modal on outside click
 window.onclick = e => {
   if (e.target === modal) {
     modal.style.display = 'none';
@@ -77,3 +83,10 @@ function animate() {
 
 init();
 animate();
+
+// Handle resize
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
