@@ -1,4 +1,4 @@
-const pdfFile = '';
+const pdfFile = 'https://likith-3012-mac.github.io/Echoes-of-an-Unsaid-Goodbye/sorry.html';
 
 const readBtn = document.getElementById('readBook');
 const downloadBtn = document.getElementById('downloadBook');
