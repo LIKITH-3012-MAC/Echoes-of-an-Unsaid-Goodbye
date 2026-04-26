@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echoes of an Unsaid Goodbye</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Poppins", system-ui, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(157, 78, 221, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(0, 229, 255, 0.25), transparent 35%),
+        linear-gradient(135deg, #050510, #09091f 45%, #020207);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle, black, transparent 78%);
+      pointer-events: none;
+    }
+
+    .orb {
+      position: fixed;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(55px);
+      opacity: 0.45;
+      animation: float 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    .orb.one {
+      background: #9d4edd;
+      top: -110px;
+      left: -120px;
+    }
+
+    .orb.two {
+      background: #00e5ff;
+      bottom: -130px;
+      right: -120px;
+      animation-delay: 1.2s;
+    }
+
+    .orb.three {
+      background: #ff4d6d;
+      width: 220px;
+      height: 220px;
+      bottom: 15%;
+      left: 12%;
+      animation-delay: 2s;
+      opacity: 0.25;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+      to {
+        transform: translateY(35px) translateX(28px) scale(1.08);
+      }
+    }
+
+    .container {
+      width: min(1100px, 100%);
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .visual-panel,
+    .message-panel {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.075);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-radius: 34px;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .visual-panel {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff4d6d;
+      box-shadow: 0 0 20px #ff4d6d;
+    }
+
+    .book-art {
+      height: 360px;
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,0.22), transparent 32%),
+        linear-gradient(135deg, #190022, #07152d 60%, #020209);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .book-art::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(
+        from 180deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent,
+        rgba(0,229,255,0.18),
+        transparent
+      );
+      animation: rotateGlow 8s linear infinite;
+    }
+
+    @keyframes rotateGlow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .book {
+      width: 190px;
+      height: 260px;
+      border-radius: 14px 22px 22px 14px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.35), transparent 18%),
+        linear-gradient(145deg, #2a0a3f, #101b40 55%, #050611);
+      box-shadow:
+        0 35px 80px rgba(0,0,0,0.65),
+        0 0 45px rgba(157, 78, 221, 0.45);
+      border: 1px solid rgba(255,255,255,0.18);
+      position: relative;
+      z-index: 2;
+      transform: rotate(-5deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .book::after {
+      content: "";
+      position: absolute;
+      right: -10px;
+      top: 12px;
+      width: 10px;
+      height: calc(100% - 24px);
+      border-radius: 0 12px 12px 0;
+      background: linear-gradient(#f5f5f5, #b8b8c8);
+      opacity: 0.85;
+    }
+
+    .book-title {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      line-height: 1.18;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 25px rgba(255,255,255,0.4);
+    }
+
+    .status-box {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .message-panel {
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .badge {
+      width: fit-content;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 77, 109, 0.13);
+      border: 1px solid rgba(255, 77, 109, 0.35);
+      color: #ffb3c1;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      box-shadow: 0 0 30px rgba(255, 77, 109, 0.15);
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    h1 span {
+      display: block;
+      background: linear-gradient(90deg, #ffffff, #c7d2fe, #67e8f9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+    }
+
+    .subtitle {
+      font-size: clamp(17px, 2.2vw, 23px);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.78);
+      max-width: 680px;
+      margin-bottom: 34px;
+    }
+
+    .highlight {
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .reason-card {
+      padding: 24px;
+      border-radius: 26px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.14);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .reason-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(#ff4d6d, #9d4edd, #00e5ff);
+      box-shadow: 0 0 25px #9d4edd;
+    }
+
+    .reason-card p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+      padding-left: 10px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 15px 20px;
+      border-radius: 16px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: 0.02em;
+      transition: 0.35s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #9d4edd, #00e5ff);
+      box-shadow: 0 12px 35px rgba(0,229,255,0.2);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+    }
+
+    .footer-note {
+      margin-top: 36px;
+      color: rgba(255,255,255,0.42);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .particle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.65);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: rise linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(110vh) scale(0);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        align-items: flex-start;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .visual-panel {
+        min-height: 430px;
+      }
+
+      .book-art {
+        height: 290px;
+      }
+
+      .message-panel {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 14px;
+      }
+
+      .visual-panel,
+      .message-panel {
+        border-radius: 26px;
+      }
+
+      .visual-panel {
+        padding: 22px;
+      }
+
+      .book {
+        width: 150px;
+        height: 220px;
+      }
+
+      .book-title {
+        font-size: 18px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <main class="container">
+    <section class="visual-panel">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        Digital Notice
+      </div>
+
+      <div class="book-art">
+        <div class="book">
+          <div class="book-title">
+            Echoes<br />
+            of an<br />
+            Unsaid<br />
+            Goodbye
+          </div>
+        </div>
+      </div>
+
+      <div class="status-box">
+        Status: Removed from public internet access.<br />
+        Availability: No longer publicly listed.
+      </div>
+    </section>
+
+    <section class="message-panel">
+      <div class="badge">Notice of Removal</div>
+
+      <h1>
+        Sorry,
+        <span>this work is no longer online.</span>
+      </h1>
+
+      <p class="subtitle">
+        <span class="highlight">“Echoes of an UNSAID GOODBYE”</span>
+        has been removed from the internet due to personal convictions.
+      </p>
+
+      <div class="reason-card">
+        <p>
+          This page exists as a formal notice to visitors who may be searching
+          for the work. The content is no longer available publicly, and the
+          decision was made with personal clarity, respect, and finality.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="javascript:void(0)">
+          ✦ Respect the Decision
+        </a>
+
+        <a class="btn secondary" href="javascript:void(0)">
+          ⟵ Return Later
+        </a>
+      </div>
+
+      <p class="footer-note">
+        © 2026 — Echoes of an Unsaid Goodbye. This notice is intentionally
+        minimal, private, and final.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const particleCount = 45;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("span");
+      particle.className = "particle";
+
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration = Math.random() * 7 + 6 + "s";
+      particle.style.animationDelay = Math.random() * 8 + "s";
+      particle.style.opacity = Math.random();
+
+      document.body.appendChild(particle);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+
+      document.querySelector(".book").style.transform =
+        `rotate(${-5 + x * 8}deg) translate(${x * 14}px, ${y * 14}px)`;
+    });
+  </script>
+</body>
+</html>
